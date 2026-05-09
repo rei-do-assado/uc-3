@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ranking e desempenho final | O Rei do Sabor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+</head>
+<body data-prefix="..">
+  <header data-navbar></header>
+  <section class="page-header">
+    <div class="container">
+      <span class="badge-arcade">🏆 Desempenho final</span>
+      <h1 class="display-4 mt-3">Ranking e desempenho final</h1>
+      <p class="lead mb-0">Pontuação consolidada, tentativas, tempo médio, classificação e gráfico por tema.</p>
+    </div>
+  </section>
+  <main class="section-pad">
+    <div class="container">
+      <div data-ranking></div>
+      <div class="d-flex flex-wrap gap-2 mt-4">
+        <button class="btn btn-outline-danger btn-lg" data-reset-ranking><i class="bi bi-arrow-counterclockwise me-2"></i>Reiniciar todos os jogos</button>
+        <button class="btn btn-warning btn-lg" data-print><i class="bi bi-printer me-2"></i>Imprimir resultado</button>
+        <a class="btn btn-dark btn-lg" href="../index.html"><i class="bi bi-house-door me-2"></i>Voltar ao início</a>
+        <button class="btn btn-outline-dark btn-lg" data-audio-toggle>🎵 Ativar trilha</button>
+      </div>
+      <div class="audio-panel mt-3">
+        <strong>🎵 Trilha Arcade 80/90</strong>
+        <label for="volume" class="small mb-0">Volume</label>
+        <input id="volume" type="range" min="0" max="0.5" step="0.01" data-volume>
+      </div>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/dados.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/audio.js"></script>
+</body>
+</html>

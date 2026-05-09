@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O Rei do Sabor | Arcade Logístico de Armazenagem</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body data-prefix=".">
+  <header data-navbar></header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="brand-lockup">
+          <img src="assets/logo-rei-do-sabor.png" alt="Logo O Rei do Sabor" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'logo-reserve',textContent:'O Rei do Sabor'}))">
+          <span class="badge-arcade">🕹️ Missão técnica de armazenagem</span>
+        </div>
+        <h1>O Rei do Sabor | Arcade Logístico de Armazenagem</h1>
+        <p class="mt-3">Minigames interativos para aprender tipos de armazém, capacidade de armazenagem, pallets e estruturas.</p>
+        <p>Simule desafios reais de uma empresa alimentícia de Guarulhos/SP com produtos perecíveis, embalagens, expedição, reposição, validade e segurança operacional.</p>
+        <div class="d-flex flex-wrap gap-2 mt-4">
+          <a class="btn btn-warning btn-lg" href="pages/tipo-armazem.html"><i class="bi bi-controller me-2"></i>Começar missão logística</a>
+          <button class="btn btn-outline-light btn-lg" data-audio-toggle data-bs-toggle="tooltip" data-bs-title="Liga ou desliga a trilha criada com Web Audio API">🎵 Ativar trilha arcade</button>
+          <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#modalPontuacao"><i class="bi bi-info-circle me-2"></i>Ver pontuação</button>
+        </div>
+        <div class="audio-panel mt-3">
+          <strong>🎵 Trilha Arcade 80/90</strong>
+          <label for="volume" class="small mb-0">Volume</label>
+          <input id="volume" type="range" min="0" max="0.5" step="0.01" data-volume>
+          <span data-home-score>0 pontos acumulados</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad">
+      <div class="container">
+        <div class="stat-strip">
+          <div class="stat"><strong data-count="3">0</strong><span>minigames</span></div>
+          <div class="stat"><strong data-count="30">0</strong><span>desafios logísticos</span></div>
+          <div class="stat"><strong data-count="3">0</strong><span>níveis</span></div>
+          <div class="stat"><strong data-count="1000">0</strong><span>pontos possíveis por jogo</span></div>
+          <div class="stat"><strong>✅</strong><span>feedback técnico</span></div>
+          <div class="stat"><strong>📱</strong><span>celular e desktop</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad pt-0">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-6 col-xl-3">
+            <a class="game-card" href="pages/tipo-armazem.html">
+              <span class="icon">🏭</span>
+              <h2>Qual armazém eu sou?</h2>
+              <p>Escolha a estrutura ideal para perecíveis, cross-docking, fulfillment, sazonalidade e distribuição.</p>
+            </a>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <a class="game-card" href="pages/capacidade-armazenagem.html">
+              <span class="icon">🚦</span>
+              <h2>Semáforo da ocupação</h2>
+              <p>Classifique a taxa de ocupação e identifique riscos de gargalo, circulação e colapso operacional.</p>
+            </a>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <a class="game-card" href="pages/pallets-estruturas.html">
+              <span class="icon">🧯</span>
+              <h2>Inspeção de segurança</h2>
+              <p>Avalie pallets, unitização de cargas e estruturas porta-pallets com critérios técnicos.</p>
+            </a>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <a class="game-card" href="pages/ranking.html">
+              <span class="icon">🏆</span>
+              <h2>Ranking final</h2>
+              <p>Veja pontuação consolidada, gráficos de desempenho e recomendação profissional de estudo.</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad pt-0">
+      <div class="container">
+        <div class="panel">
+          <h2>Regras gerais</h2>
+          <div class="row g-3">
+            <div class="col-lg-6">
+              <p>Cada jogo possui 10 desafios. A resposta gera feedback técnico e didático, pontuação parcial e orientação para discussão em sala.</p>
+              <p>Acerto na primeira tentativa vale 100 pontos, segunda tentativa vale 60 e terceira tentativa vale 30. Respostas em até 15 segundos recebem bônus de agilidade.</p>
+            </div>
+            <div class="col-lg-6">
+              <p>Bônus adicionais: concluir jogo sem erro, atingir 80% de acertos e finalizar os três jogos. O ranking final usa dados salvos no navegador com localStorage.</p>
+              <p>Use em equipes, votação da turma ou competição rápida em projetor. Todos os dados são simulados e didáticos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal fade" id="modalPontuacao" tabindex="-1" aria-labelledby="modalPontuacaoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-4" id="modalPontuacaoLabel">Critérios de pontuação</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p>Acertos valem 100, 60 ou 30 pontos conforme a tentativa. Respostas em até 15 segundos recebem 20 pontos extras.</p>
+          <p>Bônus adicionais são concedidos por jogo sem erro, desempenho de 80% ou mais e conclusão dos três jogos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/dados.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/audio.js"></script>
+</body>
+</html>

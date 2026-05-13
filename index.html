@@ -26,13 +26,13 @@
         <p>Simule desafios reais de uma empresa alimentícia de Guarulhos/SP com produtos perecíveis, embalagens, expedição, reposição, validade e segurança operacional.</p>
         <div class="d-flex flex-wrap gap-2 mt-4">
           <a class="btn btn-warning btn-lg" href="pages/tipo-armazem.html"><i class="bi bi-controller me-2"></i>Começar missão logística</a>
-          <button class="btn btn-outline-light btn-lg" data-audio-toggle data-bs-toggle="tooltip" data-bs-title="Liga ou desliga a trilha criada com Web Audio API">🎵 Ativar trilha arcade</button>
+          <button class="btn btn-outline-light btn-lg" data-audio-toggle data-bs-toggle="tooltip" data-bs-title="Liga ou desliga a trilha MIDI em loop">🎵 Ativar trilha arcade</button>
           <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#modalPontuacao"><i class="bi bi-info-circle me-2"></i>Ver pontuação</button>
         </div>
         <div class="audio-panel mt-3">
-          <strong>🎵 Trilha Arcade 80/90</strong>
+          <strong>🎵 Trilha Arcade <span data-volume-value>90/90</span></strong>
           <label for="volume" class="small mb-0">Volume</label>
-          <input id="volume" type="range" min="0" max="0.5" step="0.01" data-volume>
+          <input id="volume" type="range" min="0" max="90" step="1" value="90" data-volume>
           <span data-home-score>0 pontos acumulados</span>
         </div>
       </div>
@@ -96,7 +96,7 @@
               <p>Acerto na primeira tentativa vale 100 pontos, segunda tentativa vale 60 e terceira tentativa vale 30. Respostas em até 15 segundos recebem bônus de agilidade.</p>
             </div>
             <div class="col-lg-6">
-              <p>Bônus adicionais: concluir jogo sem erro, atingir 80% de acertos e finalizar os três jogos. O ranking final usa dados salvos no navegador com localStorage.</p>
+              <p>Bônus adicionais: concluir jogo sem erro, atingir 80% de acertos e finalizar os três jogos. O ranking final usa dados locais do navegador e pode publicar a pontuação online no Supabase.</p>
               <p>Use em equipes, votação da turma ou competição rápida em projetor. Todos os dados são simulados e didáticos.</p>
             </div>
           </div>
@@ -121,7 +121,9 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/supabase-config.js"></script>
   <script src="js/dados.js"></script>
   <script src="js/app.js"></script>
   <script src="js/audio.js"></script>

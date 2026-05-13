@@ -33,9 +33,10 @@ Tipos de armazém, centro de distribuição, armazém refrigerado, cross-docking
 - Bootstrap 5
 - Bootstrap Icons
 - Chart.js
-- Web Audio API para trilha chiptune e efeitos sonoros
-- Arquivo MIDI de apoio em `/assets/audio/trilha-arcade.mid`
-- localStorage para persistência local da pontuação
+- Tone.js e @tonejs/midi para tocar `/assets/audio/trilha-arcade.mid` em loop
+- Web Audio API para efeitos sonoros e fallback da trilha
+- Supabase para ranking online
+- localStorage para cache local da pontuação
 
 ## Estrutura de arquivos
 
@@ -50,33 +51,47 @@ Tipos de armazém, centro de distribuição, armazém refrigerado, cross-docking
 /js/app.js
 /js/jogos.js
 /js/audio.js
+/js/supabase-config.js
 /assets/logo-rei-do-sabor.png
 /assets/img/
 /assets/audio/trilha-arcade.mid
+/supabase/ranking.sql
 /README.md
 ```
 
 ## Como executar localmente
 
-Abra o arquivo `index.html` diretamente no navegador. Não há backend, banco de dados ou instalação obrigatória.
+Abra o arquivo `index.html` diretamente no navegador. Não há instalação obrigatória; o ranking online só depende da configuração do Supabase.
 
-Para melhor compatibilidade com imagens externas e CDNs, também é possível servir a pasta com qualquer servidor local simples.
+Para melhor compatibilidade com imagens externas, CDNs e carregamento do arquivo MIDI, também é possível servir a pasta com qualquer servidor local simples.
 
 ## Como usar em apresentação
 
 1. Abra `index.html` no projetor.
-2. Ative a trilha arcade pelo botão de som, se desejar.
-3. Escolha um minigame e peça que a turma vote na alternativa.
-4. Leia o feedback técnico e a dica do professor após cada rodada.
-5. Ao final dos três jogos, abra o ranking para discutir desempenho por tema.
+2. Informe nome ou equipe quando o site solicitar.
+3. Ative a trilha arcade pelo botão de som, se desejar.
+4. Escolha um minigame e peça que a turma vote na alternativa.
+5. Leia o feedback técnico e a dica do professor após cada rodada.
+6. Ao final dos três jogos, abra o ranking para discutir desempenho por tema.
 
 ## Como substituir imagens
 
 As imagens usam URLs públicas de Pixabay/Pexels com fallback visual. Para produção, coloque imagens locais em `/assets/img` e substitua as URLs no arquivo `js/dados.js`.
 
+## Como configurar o ranking online
+
+1. Crie um projeto no Supabase.
+2. Abra o SQL Editor do projeto.
+3. Execute o script `supabase/ranking.sql`. Se a tabela já existir, execute novamente para aplicar as novas colunas de sessão e pontuação por jogo.
+4. Em Project Settings > API, copie a Project URL e a anon public key.
+5. Cole os valores em `js/supabase-config.js`.
+6. Publique o site no GitHub Pages e abra `pages/ranking.html`.
+
+Antes de iniciar um jogo ou tocar a trilha, o usuário deve informar nome ou equipe. Ao finalizar cada jogo, a aplicação salva automaticamente no Supabase um snapshot com nome, sessão, pontuação total, erros, tentativas e pontos de cada minigame. O botão **Sincronizar** no ranking força um novo envio manual. A leitura pública fica liberada por RLS, e a aplicação permite apenas inserção pública de novas pontuações.
+
 ## Como substituir a trilha sonora
 
-O site toca a trilha principal via Web Audio API para funcionar melhor nos navegadores. Também há um arquivo MIDI didático em `/assets/audio/trilha-arcade.mid`, que pode ser substituído por outra trilha `.mid` ou convertido para `.mp3`/`.ogg` caso você queira reprodução por arquivo de áudio.
+O site carrega `/assets/audio/trilha-arcade.mid` como trilha principal, toca em loop e mantém volume padrão em 90/90. Para trocar a música, substitua esse arquivo por outro `.mid` com o mesmo nome.
 
 ## Como substituir o logo
 

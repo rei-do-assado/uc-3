@@ -15,7 +15,7 @@ const imagensContexto = {
 };
 
 const sonsArcade = {
-  trilha: "Web Audio API - chiptune em loop",
+  trilha: "Arquivo MIDI em loop",
   arquivoMidi: "assets/audio/trilha-arcade.mid",
   acerto: "pulso ascendente",
   erro: "pulso grave",

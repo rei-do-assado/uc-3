@@ -299,7 +299,7 @@ a { text-decoration: none; }
 .glow { animation: glow .75s ease; }
 .shake { animation: shake .42s ease; }
 
-.traffic-wrap {
+.occupation-wrap {
   display: flex;
   align-items: center;
   gap: 18px;
@@ -308,33 +308,6 @@ a { text-decoration: none; }
   border-radius: 8px;
   background: #fff8e8;
 }
-
-.traffic-light {
-  width: 72px;
-  padding: 8px;
-  border-radius: 8px;
-  background: #211713;
-}
-
-.traffic-light span {
-  display: block;
-  width: 42px;
-  height: 42px;
-  margin: 6px auto;
-  border-radius: 50%;
-  background: #5a504b;
-  opacity: .45;
-}
-
-.traffic-light .on {
-  opacity: 1;
-  box-shadow: 0 0 18px currentColor;
-}
-
-.verde { color: #2e7d32; background: #2e7d32 !important; }
-.amarelo { color: #f5b32f; background: #f5b32f !important; }
-.vermelho { color: #c62828; background: #c62828 !important; }
-.preto { color: #111; background: #111 !important; }
 
 .occupation-bar {
   height: 22px;
@@ -348,6 +321,10 @@ a { text-decoration: none; }
   height: 100%;
   border-radius: inherit;
   animation: fillBar .8s ease;
+}
+
+.occupation-bar-neutral span {
+  background: linear-gradient(90deg, #6b4a3e, #a0714f);
 }
 
 .checklist {
@@ -465,7 +442,7 @@ a { text-decoration: none; }
   .brand-lockup { align-items: flex-start; flex-direction: column; }
   .brand-lockup img, .logo-reserve { width: 94px; height: 94px; }
   .panel, .result-card { padding: 18px; }
-  .traffic-wrap { align-items: flex-start; flex-direction: column; }
+  .occupation-wrap { align-items: flex-start; flex-direction: column; }
   .checklist { grid-template-columns: 1fr; }
   .challenge-image, .image-fallback { min-height: 200px; }
 }

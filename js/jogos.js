@@ -76,13 +76,12 @@ function montarAreaEspecial(desafio) {
   const area = document.querySelector("[data-special]");
   if (!area) return;
   if (estadoJogo.slug === "capacidade") {
-    const cor = desafio.ocupacao <= 70 ? "#2e7d32" : desafio.ocupacao <= 85 ? "#f5b32f" : desafio.ocupacao <= 100 ? "#c62828" : "#111";
+    const largura = Math.min(desafio.ocupacao, 120) / 1.2;
     area.innerHTML = `
-      <div class="traffic-wrap">
-        <div class="traffic-light"><span class="${desafio.ocupacao <= 70 ? "on verde" : ""}"></span><span class="${desafio.ocupacao > 70 && desafio.ocupacao <= 85 ? "on amarelo" : ""}"></span><span class="${desafio.ocupacao > 85 && desafio.ocupacao <= 100 ? "on vermelho" : ""}"></span><span class="${desafio.ocupacao > 100 ? "on preto" : ""}"></span></div>
+      <div class="occupation-wrap">
         <div class="w-100">
           <div class="d-flex justify-content-between"><strong>Ocupação</strong><strong>${desafio.ocupacao}%</strong></div>
-          <div class="occupation-bar"><span style="width:${Math.min(desafio.ocupacao, 120) / 1.2}%;background:${cor}"></span></div>
+          <div class="occupation-bar occupation-bar-neutral"><span style="width:${largura}%"></span></div>
           <small>Alerta: percentual, giro, layout, sazonalidade e segurança devem ser analisados em conjunto.</small>
         </div>
       </div>`;
@@ -99,24 +98,26 @@ function verificarResposta(resposta, botao) {
   estadoJogo.tentativasQuestao += 1;
   estadoJogo.tentativas += 1;
   const correta = resposta === desafio.respostaCorreta;
-  document.querySelectorAll("[data-options] button").forEach((b) => {
-    if (b.dataset.answer === desafio.respostaCorreta) b.classList.add("correct");
-  });
   if (correta) {
     const tempo = Math.round((Date.now() - estadoJogo.inicioQuestao) / 1000);
     estadoJogo.tempos.push(tempo);
     estadoJogo.acertos += 1;
     estadoJogo.pontos += calcularPontuacao(estadoJogo.tentativasQuestao, tempo);
+    botao.classList.add("correct");
     tocarSomAcerto();
     exibirFeedback(true, desafio, tempo);
     document.querySelectorAll("[data-options] button").forEach((b) => (b.disabled = true));
     document.querySelector("[data-next]").classList.remove("d-none");
   } else {
     estadoJogo.semErro = false;
+    estadoJogo.erros += 1;
     botao.classList.add("wrong", "shake");
+    botao.disabled = true;
     tocarSomErro();
     if (estadoJogo.tentativasQuestao >= 3) {
-      estadoJogo.erros += 1;
+      document.querySelectorAll("[data-options] button").forEach((b) => {
+        if (b.dataset.answer === desafio.respostaCorreta) b.classList.add("correct");
+      });
       exibirFeedback(false, desafio);
       document.querySelectorAll("[data-options] button").forEach((b) => (b.disabled = true));
       document.querySelector("[data-next]").classList.remove("d-none");
@@ -167,7 +168,8 @@ function pausarJogo() {
 }
 
 function reiniciarJogo() {
-  iniciarJogo(document.body.dataset.game);
+  if (window.exigirNomeJogador) window.exigirNomeJogador(() => iniciarJogo(document.body.dataset.game));
+  else iniciarJogo(document.body.dataset.game);
 }
 
 function finalizarJogo() {
@@ -225,7 +227,10 @@ function confeteSimples() {
 document.addEventListener("DOMContentLoaded", () => {
   const slug = document.body.dataset.game;
   if (!slug) return;
-  document.querySelector("[data-start]")?.addEventListener("click", () => iniciarJogo(slug));
+  document.querySelector("[data-start]")?.addEventListener("click", () => {
+    if (window.exigirNomeJogador) window.exigirNomeJogador(() => iniciarJogo(slug));
+    else iniciarJogo(slug);
+  });
   document.querySelector("[data-next]")?.addEventListener("click", avancarDesafio);
   document.querySelector("[data-pause]")?.addEventListener("click", pausarJogo);
   document.querySelector("[data-restart]")?.addEventListener("click", reiniciarJogo);
